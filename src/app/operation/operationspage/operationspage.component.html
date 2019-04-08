@@ -1,0 +1,90 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12">
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtra">
+      </mat-form-field>
+
+      <table mat-table [dataSource]="dataSource" matSort class="table table-striped">
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="operationNumber">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> # </th>
+          <td mat-cell *matCellDef="let element"> {{element.operationNumber}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+          <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="openingDate">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Opening Date </th>
+          <td mat-cell *matCellDef="let element">
+            <mat-chip-list>
+              <mat-chip color="primary" > {{element.openingDate | date:'shortDate'}} </mat-chip>
+            </mat-chip-list>
+          </td>
+        </ng-container>
+
+          <ng-container matColumnDef="condominium">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Condominium </th>
+            <td mat-cell *matCellDef="let element">
+              <mat-chip-list>
+                <mat-chip color="primary"> {{element.condominium}} </mat-chip>
+              </mat-chip-list>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="favouriteSupplier">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Supplier Assignee</th>
+            <td mat-cell *matCellDef="let element">
+              <mat-chip-list>
+                <mat-chip color="primary"> {{element.favouriteSupplier}} </mat-chip>
+              </mat-chip-list>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="description">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Description</th>
+            <td mat-cell *matCellDef="let element">
+              <mat-chip-list>
+                <mat-chip color="primary"> {{element.description}} </mat-chip>
+              </mat-chip-list>
+            </td>
+          </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef> Actions </th>
+          <td mat-cell *matCellDef="let element; let i = index;">
+            <button mat-icon-button [matMenuTriggerFor]="menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item (click)="removeAt(i)">
+                <mat-icon>delete</mat-icon>
+                <span>Elimina</span>
+              </button>
+              <button mat-menu-item [routerLink]="['/operation/' + element.id]">
+                <mat-icon>find_in_page</mat-icon>
+                <span>Dettaglio</span>
+              </button>
+              <button mat-menu-item [routerLink]="['/operation/edit/' + element.id]">
+                <mat-icon>edit</mat-icon>
+                <span>Modifica</span>
+              </button>
+            </mat-menu>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    </div>
+  </div>
+  <ngx-ui-loader></ngx-ui-loader>
+</div>

@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Cedac</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="stylesheet" href="assets/bootstrap.min.css" crossorigin="anonymous">
+  <link rel="stylesheet" href="assets/bootstrap-theme.css" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+  <script type="text/javascript">
+    var ajaxURL = /*[[${ajaxURL}]]*/ '';
+    var isStandalone = /*[[${standalone}]]*/ true;
+    var authenticatedUser = /*[[${authenticatedUser}]]*/ 'anonymous';
+    var portletId = /*[[${portletId}]]*/ 'app';
+    var portletAppContextPath = /*[[${portletAppContextPath}]]*/ '';
+    var companyId = /*[[${companyId}]]*/ 1;
+    // Do here whatever you need to use them.
+  </script>
+  <div id="app" data-th-id="${portletId}" class="main portalStyle">
+    <app-root></app-root>
+  </div>
+</body>
+</html>

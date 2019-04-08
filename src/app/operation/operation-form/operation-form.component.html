@@ -1,0 +1,145 @@
+<div class="container-fluid">
+  <div class="row">
+    <form [formGroup]="operationForm" (ngSubmit)="onSubmit()">
+
+      <div class="col-xs-12 col-sm-4">
+        <div class="form-group">
+          <label for="status">Status</label>
+          <select id="status" class="form-control" formControlName="status">
+            <option *ngFor="let status of statuses" [value]="status.value">{{status.label}}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="col-xs-12 col-sm-4">
+        <div class="form-group">
+          <label for="creatoDa">Creato da</label>
+          <select id="creatoDa" class="form-control" formControlName="creatoDa">
+            <option *ngFor="let user of users" [value]="user.value">{{user.label}}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="col-xs-12 col-sm-4">
+        <div class="form-group">
+          <label for="condominium">Condominio</label>
+          <select id="condominium" class="form-control" formControlName="condominium">
+            <option *ngFor="let condominium of condominiums" [value]="condominium.value">{{condominium.label}}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="col-xs-12 col-sm-6">
+        <div class="form-group">
+          <label for="notifications">Avvisati a mezzo</label>
+          <select id="notifications" class="form-control" multiple formControlName="notifications">
+            <option *ngFor="let notification of notifications" [value]="notification.value">{{notification.label}}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Dettagli segnalazione</label>
+          <ckeditor [editor]="Editor"  formControlName="details" data="<p>Hello, world!</p>"></ckeditor>
+        </div>
+      </div>
+
+      <div class="col-xs-12 col-sm-6">
+        <h3>Date apertura e chiusura</h3>
+        <div class="form-group">
+          <label>Apertura</label>
+          <app-date-time-picker formControlName="dateAperture"></app-date-time-picker>
+        </div>
+        <div class="form-group">
+          <label>Chiusura</label>
+          <app-date-time-picker formControlName="dateClosing"></app-date-time-picker>
+        </div>
+      </div>
+
+      <div class="col-xs-12 col-sm-6">
+        <div class="form-group">
+          <label>Natura</label>
+          <div class="checkbox">
+            <label>
+              <input formControlName="natures" type="checkbox" value="0">
+              Tecnica
+            </label>
+          </div>
+          <div class="checkbox">
+            <label>
+              <input formControlName="natures" type="checkbox" value="1">
+              Amministrativa
+            </label>
+          </div>
+          <div class="checkbox">
+            <label>
+              <input formControlName="natures" type="checkbox" value="2">
+              Manutentiva
+            </label>
+          </div>
+          <div class="checkbox">
+            <label>
+              <input formControlName="natures" type="checkbox" value="3">
+              Legale
+            </label>
+          </div>
+          <div class="checkbox">
+            <label>
+              <input formControlName="natures" type="checkbox" value="4">
+              Privata
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xs-12 col-sm-6">
+        <div class="form-group">
+          <label for="exampleInputPassword1">Apprezzamento</label><br/>
+          <ngb-rating formControlName="appreciation" [starTemplate]="t" [readonly]="false" max="5"></ngb-rating>
+          <ng-template #t let-fill="fill">
+            <span class="star" [class.full]="fill === 100">
+              <span class="half" [style.width.%]="fill">&hearts;</span>
+            </span>
+          </ng-template>
+        </div>
+      </div>
+
+      <div class="col-xs-12 col-sm-6">
+        <div class="form-group">
+          <label for="exampleInputPassword1">Condomini</label>
+          <app-type-ahead  class="form-control" multi="true" formControlName="condominiums" [suggestions]="condominiumsObs" placeholder="Wikipedia search"></app-type-ahead>
+        </div>
+      </div>
+
+      <div class="col-xs-12 col-sm-6">
+        <div class="form-group">
+          <label for="exampleInputPassword1">Password</label>
+          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+        </div>
+      </div>
+
+      <div class="col-xs-12 col-sm-6">
+        <div class="form-group">
+          <label for="exampleInputFile">File input</label>
+          <input type="file" id="exampleInputFile">
+          <p class="help-block">Example block-level help text here.</p>
+        </div>
+      </div>
+
+      <div class="col-xs-12 col-sm-6">
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> Check me out
+          </label>
+        </div>
+      </div>
+
+      <div class="col-xs-12">
+        <hr />
+        <div class="btn-wrapper">
+          <button type="submit"  class="btn btn-default" [disabled]="!myForm.valid">Salva</button>
+        </div>
+      </div>
+    </form>
+
+    <pre>{{operationForm.value | json}}</pre>
+  </div>
+</div>

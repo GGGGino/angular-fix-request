@@ -1,0 +1,27 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<nav class="navbar navbar-inverse" *ngIf="isStandalone">
+  <div class="container">
+    <a class="navbar-brand">Angular Router</a>
+    <ul class="nav navbar-nav" routerLinkActive="active">
+      <li class="nav-item"><a class="nav-link" routerLink="/">Home</a></li>
+      <li class="nav-item"><a class="nav-link" routerLink="/operations">Gestione Interventi</a></li>
+      <li class="nav-item"><a class="nav-link" routerLink="/priorities">Priorità</a></li>
+      <li class="nav-item"><a class="nav-link" routerLink="/notifies">Notifiche</a></li>
+      <li class="nav-item"><a class="nav-link" routerLink="/natures">Natura Interventi</a></li>
+      <li class="nav-item"><a class="nav-link" routerLink="/operation_status">Stato Interventi</a></li>
+      <li class="nav-item"><a class="nav-link" routerLink="/assignation_status">Stato Assegnazioni</a></li>
+      <li class="nav-item"><a class="nav-link" routerLink="/quotes">Preventivi</a></li>
+      <li class="nav-item"><a class="nav-link" routerLink="/accident_status">Stato Sinistri</a></li>
+      <li class="nav-item"><a class="nav-link" routerLink="/accident_priorities">Priorità Sinistri</a></li>
+      <li class="nav-item"><a class="nav-link" routerLink="/accidents">Sinistri</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="operation-app container-fluid">
+  <div class="row">
+    <div class="col-xs-12">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
